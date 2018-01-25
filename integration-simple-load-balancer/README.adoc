@@ -1,0 +1,4 @@
+using:
+
+. ServiceActivator (receiver)
+. MessageChannel   (sender)

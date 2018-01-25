@@ -10,6 +10,7 @@
 
   <modules>
     <module>integration-simple</module>
+    <module>integration-simple-load-balancer</module>
   </modules>
 
   <properties>
