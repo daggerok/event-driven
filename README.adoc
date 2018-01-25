@@ -4,4 +4,4 @@ This repository is contains some event-driven examples.
 
 links:
 
-. link:https://www.youtube.com/watch?v=Hg6xMNwpfpI[spring cloud stream talk]
+. link:https://www.youtube.com/watch?v=Hg6xMNwpfpI[Cloud Event Driven Architectures with Spring Cloud Stream 2.0 - Oleg Zhurakousky, Gary Russell]

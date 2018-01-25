@@ -14,7 +14,7 @@ before_script:
 - sudo apt update -y || true
 - sudo apt -y install curl
 #- sudo apt -y install docker-ce python-pip
-#- sudo pip install httpie
+- sudo pip install httpie
 - source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
 script:
 #- bash mvnw
@@ -38,7 +38,12 @@ script:
 - bash mvnw spring-boot:run -pl embedded-kafka &
 - wait_for 8001
 - bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
-- stop_any 8001
+- bash mvnw spring-boot:run -pl spring-cloud-stream-simple-consumer
+- bash mvnw spring-boot:run -pl spring-cloud-stream-simple-producer
+- wait_for 8005 8006
+- http :8006 message=hey!
+- http :8006 message=ho!
+- stop_any 8006 8005 8001
 
 cache:
   directories:
