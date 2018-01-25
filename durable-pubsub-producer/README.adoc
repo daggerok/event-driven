@@ -1,0 +1,5 @@
+Send messages to kafka "dubable" topic via REST API endpoint:
+
+----
+http post :8002/api/v1/send message='some message'
+----

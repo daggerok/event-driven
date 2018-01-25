@@ -1,0 +1,7 @@
+To test durable delivery you can send a few messages via producer:
+
+----
+http post :8002/api/v1/send message='some message'
+----
+
+And then start this app to see, how all messages will be consumed eventually.

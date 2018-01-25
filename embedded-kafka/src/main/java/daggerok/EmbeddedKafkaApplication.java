@@ -8,13 +8,13 @@ import org.springframework.kafka.test.rule.KafkaEmbedded;
 @SpringBootApplication
 public class EmbeddedKafkaApplication {
 
+  public static void main(String[] args) {
+    SpringApplication.run(EmbeddedKafkaApplication.class, args);
+  }
+
   @Bean KafkaEmbedded embeddedKafka() {
     final KafkaEmbedded kafkaEmbedded = new KafkaEmbedded(1);
     kafkaEmbedded.setKafkaPorts(9092);
     return kafkaEmbedded;
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(EmbeddedKafkaApplication.class, args);
   }
 }

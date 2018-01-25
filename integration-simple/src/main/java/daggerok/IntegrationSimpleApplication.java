@@ -9,12 +9,12 @@ import org.springframework.integration.annotation.ServiceActivator;
 @SpringBootApplication
 public class IntegrationSimpleApplication {
 
+  public static void main(String[] args) {
+    SpringApplication.run(IntegrationSimpleApplication.class, args);
+  }
+
   @ServiceActivator(inputChannel = "in")
   public void handle(final String message) {
     log.info("message: {}", message);
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(IntegrationSimpleApplication.class, args);
   }
 }

@@ -11,6 +11,10 @@ public class IntegrationSimpleLoadBalancerApplication {
 
   /* these two (handle1 and handle2) will load balance message channel "in": */
 
+  public static void main(String[] args) {
+    SpringApplication.run(IntegrationSimpleLoadBalancerApplication.class, args);
+  }
+
   @ServiceActivator(inputChannel = "in")
   public void handle1(final String message) {
     log.info("handler 1: {}", message);
@@ -19,9 +23,5 @@ public class IntegrationSimpleLoadBalancerApplication {
   @ServiceActivator(inputChannel = "in")
   public void handle2(final String message) {
     log.info("handler 2: {}", message);
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(IntegrationSimpleLoadBalancerApplication.class, args);
   }
 }
