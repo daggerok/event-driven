@@ -1,0 +1,8 @@
+= event-driven image:https://travis-ci.org/daggerok/event-driven.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/event-driven"]
+
+This repository is contains some event-driven examples
+
+.build
+----
+./mvnw
+----

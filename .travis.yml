@@ -1,0 +1,21 @@
+group: travis_lts
+env:
+  global:
+    TERM=dumb
+language: java
+jdk:
+- openjdk8
+- oraclejdk8
+install: true
+#before_script:
+#- sudo apt update -y || true
+#- sudo apt -y install python-pip
+#- sudo pip install httpie
+#- source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
+script:
+# maven
+- ./mvnw
+cache:
+  directories:
+  - $HOME/.m2/
+  - $HOME/.gradle/
