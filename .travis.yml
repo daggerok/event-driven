@@ -67,6 +67,8 @@ script:
 - http :8010/v2 message=conditional\ v2!
 - http :8010/v3 message="conditional 🙊 😍"
 - http :8010 message="v3? O.o"
+- http :8009/actuator/channels
+- http :8010/actuator/metrics
 - stop_any 8010 8009 8001
 
 cache:

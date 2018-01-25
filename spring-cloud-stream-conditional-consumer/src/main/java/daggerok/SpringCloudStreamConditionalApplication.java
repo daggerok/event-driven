@@ -28,6 +28,11 @@ public class SpringCloudStreamConditionalApplication {
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringCloudStreamConditionalApplication.class, args);
+    SpringApplication.run(
+        SpringCloudStreamConditionalApplication.class,
+        new String[] {
+            "--management.endpoints.web.expose=*"
+        }
+    );
   }
 }
