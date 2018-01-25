@@ -27,6 +27,9 @@ script:
 - wait_for 8002
 - http post :8002/api/v1/send message=ololo
 - http post :8002/api/v1/send message=trololo
+- http post :8002/reactivePost
+- http :8002/persons
+- http :8002/test
 - stop_any 8002
 - java -jar durable-pubsub-consumer/target/*.jar --logging.level.root=warn &
 - wait_for 8003
