@@ -1,0 +1,2 @@
+See /v1 resource. Here we are setting header version=1 for message on sending.
+Later that message will be additionally handled in a specific handler listener `handleV1`
