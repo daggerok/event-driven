@@ -11,9 +11,16 @@
   <modules>
     <module>integration-simple</module>
     <module>integration-simple-load-balancer</module>
+
+
     <module>embedded-kafka</module>
+
     <module>durable-pubsub-producer</module>
     <module>durable-pubsub-consumer</module>
+
+    <module>consumer-groups-producer</module>
+    <module>consumer-groups-consumer1</module>
+    <module>consumer-groups-consumer2</module>
   </modules>
 
   <properties>
