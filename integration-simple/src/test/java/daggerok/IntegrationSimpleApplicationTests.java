@@ -9,14 +9,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.concurrent.TimeUnit;
-
 import static java.time.LocalTime.now;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.core.IsNot.*;
-import static org.hamcrest.core.IsNull.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+//hamcrest not
+import static org.hamcrest.core.IsNot.not;
+//hamcrest nullValue
+import static org.hamcrest.core.IsNull.nullValue;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -30,12 +31,16 @@ public class IntegrationSimpleApplicationTests {
   @SneakyThrows
   public void contextLoads() {
 
+    log.info("start at: {}", now());
+
     assertThat(in, not(nullValue()));
     assertThat(app, not(nullValue()));
 
-    log.info("1: {}", now());
-    in.send(MessageBuilder.withPayload("hi!").build());
-    TimeUnit.SECONDS.sleep(1);
-    log.info("2: {}", now());
+    in.send(MessageBuilder.withPayload("hey!").build());
+    in.send(new GenericMessage<>("hi!"));
+
+    log.info("stop at: {}", now());
+
+    in.send(new GenericMessage<>("blocking ho!"), 2);
   }
 }
