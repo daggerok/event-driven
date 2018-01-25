@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>daggerok</groupId>
-  <artifactId>spring-cloud-stream-simple-consumer</artifactId>
+  <artifactId>spring-cloud-stream-conditional-producer</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
 

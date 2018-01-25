@@ -14,15 +14,18 @@
 
     <module>embedded-kafka</module>
 
-    <module>spring-cloud-stream-simple-consumer</module>
-    <module>spring-cloud-stream-simple-producer</module>
-
     <module>durable-pubsub-producer</module>
     <module>durable-pubsub-consumer</module>
 
     <module>consumer-groups-producer</module>
     <module>consumer-groups-consumer1</module>
     <module>consumer-groups-consumer2</module>
+
+    <module>spring-cloud-stream-simple-consumer</module>
+    <module>spring-cloud-stream-simple-producer</module>
+
+    <module>spring-cloud-stream-conditional-producer</module>
+    <module>spring-cloud-stream-conditional-consumer</module>
   </modules>
 
   <properties>

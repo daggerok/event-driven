@@ -17,21 +17,6 @@ before_script:
 - sudo pip install httpie
 - source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
 script:
-#- bash mvnw
-
-#- bash mvnw clean package -DskipTests
-
-#- >
-#  bash mvnw clean package \
-#    -pl integration-simple \
-#    -pl integration-simple-load-balancer \
-#    -pl embedded-kafka \
-#    -pl durable-pubsub-consumer \
-#    -pl durable-pubsub-producer \
-#    -pl consumer-groups-consumer1 \
-#    -pl consumer-groups-consumer2 \
-#    -pl consumer-groups-producer
-
 # maven exclude / skip / ignore module from build
 - bash mvnw clean package -pl !spring-cloud-stream-simple-consumer,!spring-cloud-stream-simple-producer
 
@@ -59,17 +44,30 @@ script:
 - http post :8006/api/v1/send message=trololololo\ trololo\ trlolo
 - stop_any 8004 8005 8006 8001
 
-# spring-cloud=-stream
+# spring-cloud-stream-simple
 - java -jar embedded-kafka/target/*.jar &
 - wait_for 8001
 - bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
 - java -jar spring-cloud-stream-simple-consumer/target/*.jar &
 - java -jar spring-cloud-stream-simple-producer/target/*.jar &
-- wait_for 8005 8006
-- http :8006 message=hey!
-- http :8006 message=ho!
-- http :8006 message="🙊😍"
-- stop_any 8006 8005 8001
+- wait_for 8007 8008
+- http :8008 message=hey!
+- http :8008 message=ho!
+- http :8008 message="🙊😍"
+- stop_any 8008 8007 8001
+
+# spring-cloud-stream-conditional
+- java -jar embedded-kafka/target/*.jar &
+- wait_for 8001
+- bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
+- java -jar spring-cloud-stream-conditional-consumer/target/*.jar &
+- java -jar spring-cloud-stream-conditional-producer/target/*.jar &
+- wait_for 8009 8010
+- http :8010/v1 message=conditional\ version\ 1!
+- http :8010/v2 message=conditional\ v2!
+- http :8010/v3 message="conditional 🙊 😍"
+- http :8010 message="v3? O.o"
+- stop_any 8010 8009 8001
 
 cache:
   directories:
