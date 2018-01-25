@@ -46,7 +46,7 @@ script:
 - java -jar durable-pubsub-consumer/target/*.jar &
 - wait_for 8003
 - sleep 1
-- stop_any 8002 8001
+- stop_any 8003 8001
 
 # TODO: consumer-groups
 - java -jar embedded-kafka/target/*.jar &
@@ -63,11 +63,12 @@ script:
 - java -jar embedded-kafka/target/*.jar &
 - wait_for 8001
 - bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
-- java -jar spring-cloud-stream-simple-consumer
-- java -jar spring-cloud-stream-simple-producer
+- java -jar spring-cloud-stream-simple-consumer/target/*.jar &
+- java -jar spring-cloud-stream-simple-producer/target/*.jar &
 - wait_for 8005 8006
 - http :8006 message=hey!
 - http :8006 message=ho!
+- http :8006 message="🙊😍"
 - stop_any 8006 8005 8001
 
 cache:
