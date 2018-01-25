@@ -1,4 +1,1 @@
-using:
-
-. ServiceActivator (receiver)
-. MessageChannel   (sender)
+ServiceActivator handle1 and handle2 (receivers) will load balance input messages
