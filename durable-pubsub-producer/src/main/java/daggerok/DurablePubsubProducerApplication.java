@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.kafka.core.KafkaOperations;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -22,8 +21,12 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @RequiredArgsConstructor
 public class DurablePubsubProducerApplication {
 
-//  final KafkaTemplate<String, Object> kafka;
+  //  final KafkaTemplate<String, Object> kafka;
   final KafkaOperations<String, Object> kafka;
+
+  public static void main(String[] args) {
+    SpringApplication.run(DurablePubsubProducerApplication.class, args);
+  }
 
   @Bean
   public RouterFunction<ServerResponse> routes() {
@@ -44,9 +47,5 @@ public class DurablePubsubProducerApplication {
         )
 
         ;
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(DurablePubsubProducerApplication.class, args);
   }
 }

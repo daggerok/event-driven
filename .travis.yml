@@ -1,3 +1,4 @@
+#sudo: required
 group: travis_lts
 env:
   global:
@@ -9,12 +10,36 @@ jdk:
 #service:
 #- docker
 install: true
-#before_script:
-#- sudo apt update -y || true
+before_script:
+- sudo apt update -y || true
+- sudo apt -y install curl
 #- sudo apt -y install docker-ce python-pip
 #- sudo pip install httpie
-#- source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
-script: bash mvnw
+- source <(curl -fsSL https://raw.github.com/daggerok/bash-functions/master/main.bash)
+script:
+#- bash mvnw
+
+#- bash mvnw clean package -DskipTests
+
+#- >
+#  bash mvnw clean package \
+#    -pl integration-simple \
+#    -pl integration-simple-load-balancer \
+#    -pl embedded-kafka \
+#    -pl durable-pubsub-consumer \
+#    -pl durable-pubsub-producer \
+#    -pl consumer-groups-consumer1 \
+#    -pl consumer-groups-consumer2 \
+#    -pl consumer-groups-producer
+
+# maven exclude / skip / ignore module from build
+- bash mvnw clean package -pl !spring-cloud-stream-simple-consumer,!spring-cloud-stream-simple-producer
+
+- bash mvnw spring-boot:run -pl embedded-kafka &
+- wait_for 8001
+- bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
+- stop_any 8001
+
 cache:
   directories:
   - $HOME/.m2/

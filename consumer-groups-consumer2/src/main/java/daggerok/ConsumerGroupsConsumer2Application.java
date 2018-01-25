@@ -9,12 +9,12 @@ import org.springframework.kafka.annotation.KafkaListener;
 @SpringBootApplication
 public class ConsumerGroupsConsumer2Application {
 
+  public static void main(String[] args) {
+    SpringApplication.run(ConsumerGroupsConsumer2Application.class, args);
+  }
+
   @KafkaListener(topicPattern = "consumer-groups")
   public void listen(final Object message) {
     log.info("consumed by 2: {}", message);
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(ConsumerGroupsConsumer2Application.class, args);
   }
 }

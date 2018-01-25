@@ -5,11 +5,8 @@
 
   <groupId>daggerok</groupId>
   <artifactId>consumer-groups-producer</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
-
-  <name>durable-pubsub-producer</name>
-  <description>Demo project for Spring Boot</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>

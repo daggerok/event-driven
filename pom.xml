@@ -12,8 +12,10 @@
     <module>integration-simple</module>
     <module>integration-simple-load-balancer</module>
 
-
     <module>embedded-kafka</module>
+
+    <module>spring-cloud-stream-simple-consumer</module>
+    <module>spring-cloud-stream-simple-producer</module>
 
     <module>durable-pubsub-producer</module>
     <module>durable-pubsub-consumer</module>

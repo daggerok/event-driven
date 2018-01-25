@@ -21,8 +21,12 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @RequiredArgsConstructor
 public class ConsumerGroupsProducerApplication {
 
-//  final KafkaTemplate<String, Object> kafka;
+  //  final KafkaTemplate<String, Object> kafka;
   final KafkaOperations<String, Object> kafka;
+
+  public static void main(String[] args) {
+    SpringApplication.run(ConsumerGroupsProducerApplication.class, args);
+  }
 
   @Bean
   public RouterFunction<ServerResponse> routes() {
@@ -43,9 +47,5 @@ public class ConsumerGroupsProducerApplication {
         )
 
         ;
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(ConsumerGroupsProducerApplication.class, args);
   }
 }

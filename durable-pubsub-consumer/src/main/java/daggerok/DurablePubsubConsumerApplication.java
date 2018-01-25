@@ -9,12 +9,12 @@ import org.springframework.kafka.annotation.KafkaListener;
 @SpringBootApplication
 public class DurablePubsubConsumerApplication {
 
+  public static void main(String[] args) {
+    SpringApplication.run(DurablePubsubConsumerApplication.class, args);
+  }
+
   @KafkaListener(topicPattern = "durable")
   public void listen(final Object message) {
     log.info("consume: {}", message);
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(DurablePubsubConsumerApplication.class, args);
   }
 }
