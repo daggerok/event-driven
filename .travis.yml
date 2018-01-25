@@ -37,6 +37,28 @@ script:
 
 - bash mvnw spring-boot:run -pl embedded-kafka &
 - wait_for 8001
+- bash mvnw spring-boot:run -pl durable-pubsub-producer &
+- wait_for 8002
+- http post :8002/api/v1/send message=ololo
+- http post :8002/api/v1/send message=trololo
+- stop_any 8002
+- bash mvnw spring-boot:run -pl durable-pubsub-consumer &
+- wait_for 8003
+- sleep 1
+- stop_any 8002 8001
+
+- bash mvnw spring-boot:run -pl embedded-kafka &
+- wait_for 8001
+- bash mvnw spring-boot:run -pl consumer-groups-consumer1 &
+- bash mvnw spring-boot:run -pl consumer-groups-consumer2 &
+- bash mvnw spring-boot:run -pl consumer-groups-producer &
+- wait_for 8004 8005 8006
+- http post :8006/api/v1/send message='ololololo ololo ololo'
+- http post :8006/api/v1/send message=trololololo\ trololo\ trlolo
+- stop_any 8004 8005 8006 8001
+
+- bash mvnw spring-boot:run -pl embedded-kafka &
+- wait_for 8001
 - bash mvnw clean package -pl spring-cloud-stream-simple-consumer,spring-cloud-stream-simple-producer
 - bash mvnw spring-boot:run -pl spring-cloud-stream-simple-consumer
 - bash mvnw spring-boot:run -pl spring-cloud-stream-simple-producer
