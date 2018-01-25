@@ -22,9 +22,9 @@ public class SpringCloudStreamSimpleApplication {
   @StreamListener(Sink.INPUT)
   //@ServiceActivator(inputChannel = "in")
   public void handle(final String message) {
-    log.info("in: {}", sink.input());
-    log.info("ch: {}", input);
-    log.info("handle: {}", message);
+    log.warn("in: {}", sink.input());
+    log.warn("ch: {}", input);
+    log.warn("handle: {}", message);
   }
 
   public static void main(String[] args) {

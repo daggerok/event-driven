@@ -17,14 +17,14 @@ public class SpringCloudStreamConditionalApplication {
 
   @StreamListener(value = Sink.INPUT, condition = "headers['version']=='v1'")
   public void handleV1(final String message, @Headers final Map<String, String> headers) {
-    log.info("\n\nhandle v1: {}\n", message);
-    log.info("\n\nv1 headers: {}\n", headers);
+    log.warn("\n\nhandle v1: {}\n", message);
+    log.warn("\n\nv1 headers: {}\n", headers);
   }
 
   @StreamListener(value = Sink.INPUT)
   public void handleAny(final String message, @Headers final Map<String, String> headers) {
-    log.info("\n\nhandle any: {}\n", message);
-    log.info("\n\nany headers: {}\n", headers);
+    log.warn("\n\nhandle any: {}\n", message);
+    log.warn("\n\nany headers: {}\n", headers);
   }
 
   public static void main(String[] args) {

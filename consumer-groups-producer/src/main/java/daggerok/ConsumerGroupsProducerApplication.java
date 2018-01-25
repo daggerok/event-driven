@@ -12,9 +12,10 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import java.util.Map;
 
+import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-import static org.springframework.web.reactive.function.server.ServerResponse.ok;
+import static org.springframework.web.reactive.function.server.ServerResponse.status;
 
 @EnableWebFlux
 @SpringBootApplication
@@ -35,15 +36,15 @@ public class ConsumerGroupsProducerApplication {
 
         route(
             POST("/api/v1/send"),
-            request -> ok().contentType(MediaType.APPLICATION_JSON_UTF8)
-                           .body(request.bodyToMono(Map.class)
-                                        .map(req -> req.get("message"))
-                                        .map(msg -> {
+            request -> status(ACCEPTED).contentType(MediaType.APPLICATION_JSON_UTF8)
+                                       .body(request.bodyToMono(Map.class)
+                                                    .map(req -> req.get("message"))
+                                                    .map(msg -> {
 
-                                          kafka.send("consumer-groups", msg);
-                                          return "message sent.";
-                                        }),
-                                 String.class)
+                                                      kafka.send("consumer-groups", msg);
+                                                      return "message sent.";
+                                                    }),
+                                             String.class)
         )
 
         ;

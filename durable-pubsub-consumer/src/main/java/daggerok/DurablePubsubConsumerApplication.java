@@ -15,6 +15,6 @@ public class DurablePubsubConsumerApplication {
 
   @KafkaListener(topicPattern = "durable")
   public void listen(final Object message) {
-    log.info("consume: {}", message);
+    log.warn("consume: {}", message);
   }
 }

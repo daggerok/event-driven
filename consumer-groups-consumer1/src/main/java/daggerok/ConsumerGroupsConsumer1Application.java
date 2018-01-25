@@ -15,6 +15,6 @@ public class ConsumerGroupsConsumer1Application {
 
   @KafkaListener(topicPattern = "consumer-groups")
   public void listen(final Object message) {
-    log.info("consumed by 1: {}", message);
+    log.warn("consumed by 1: {}", message);
   }
 }

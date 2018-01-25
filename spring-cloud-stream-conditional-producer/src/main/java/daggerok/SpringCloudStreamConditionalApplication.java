@@ -9,9 +9,12 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+
+import static org.springframework.http.HttpStatus.ACCEPTED;
 
 @Slf4j
 @RestController
@@ -23,6 +26,7 @@ public class SpringCloudStreamConditionalApplication {
   final Source source;
 
   @PostMapping("/v1")
+  @ResponseStatus(ACCEPTED)
   public void handleV1(@RequestBody final HashMap<String, String> req) {
 
     source.output()
@@ -32,6 +36,7 @@ public class SpringCloudStreamConditionalApplication {
   }
 
   @PostMapping("/v2")
+  @ResponseStatus(ACCEPTED)
   public void handleV2(@RequestBody final HashMap<String, String> req) {
 
     source.output()
@@ -41,6 +46,7 @@ public class SpringCloudStreamConditionalApplication {
   }
 
   @PostMapping("/**")
+  @ResponseStatus(ACCEPTED)
   public void handleAny(@RequestBody final HashMap<String, String> req) {
 
     source.output()
