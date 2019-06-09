@@ -10,3 +10,5 @@ TODO:
 
 . link:https://www.youtube.com/watch?v=eqPMmotEfsA&t=1164s[Event Sourcing and CQRS with Spring Stream by Jakub Pilimon]
 . link:https://github.com/pilloPl/functional-eventsourcing[Github: pilloPl/functional-eventsourcing]
+
+see better approach: https://github.com/daggerok/spring-cloud-function-stream-integration
